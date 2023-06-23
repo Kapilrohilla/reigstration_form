@@ -1,8 +1,11 @@
+import { useState } from 'react';
 import './App.css'
-import RegistrationForm from './componenet/RegistrationForm'
+import RegistrationForm from './componenet/RegistrationForm/RegistrationForm';
+import LoginForm from './componenet/loginForm/LoginForm';
 
 function App() {
-
+  const [alreadyAccount, setAlreadyAccount] = useState(true);
+  console.log(alreadyAccount)
   return (
     <div className='container'>
       <div className="form">
@@ -24,11 +27,13 @@ function App() {
               </ol>
             </li>
           </ol>
-          <button>Have An Account</button>
+          <button onClick={() => setAlreadyAccount(!alreadyAccount)}>{!alreadyAccount ? "Have An Account" : "Create An Account"}</button>
         </div>
         <div className="right">
-          <h1>Register Form</h1>
-          <RegistrationForm />
+          <h1>{!alreadyAccount ? "Registration Form" : "Login"}</h1>
+          {
+            !alreadyAccount ? <RegistrationForm /> : <LoginForm />
+          }
         </div>
       </div>
     </div>
