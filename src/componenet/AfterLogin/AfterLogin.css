@@ -1,0 +1,89 @@
+.loggedIn {
+    /* height: 500px; */
+    max-width: 400px;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    color: black;
+}
+
+
+.title {
+    background-color: #3786bd;
+    color: white;
+    padding-block: 1.5rem;
+    text-align: center;
+}
+
+.logout {
+    margin-block: 0px 40px;
+    padding-inline: 1rem;
+}
+
+.section {
+    border-bottom: 1px solid lightgrey;
+    padding-block: 1.5rem;
+}
+
+.section:last-of-type {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav h2 {
+    font-weight: 500;
+    font-size: 1.2rem;
+}
+
+.nav p {
+    color: #3786bd;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.profile {
+    display: flex;
+    gap: 1.5rem;
+    margin-block: 1rem;
+}
+
+.profile img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.profileDetail h3 {
+    font-weight: 500;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.profileDetail p {
+    font-weight: 300;
+    font-size: 0.9rem;
+}
+
+input[type="range"] {
+    margin-top: 1rem;
+}
+
+.logoutBtn button {
+    height: 40px;
+    border: none;
+    outline: none;
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding-inline: 5px 10px;
+    cursor: pointer;
+    background: none;
+}

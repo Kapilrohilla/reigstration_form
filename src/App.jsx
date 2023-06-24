@@ -3,11 +3,14 @@ import { useState } from 'react';
 // necessary files
 import './App.css'
 import validation from "./validation";
+
 // componenet
 import RegistrationForm from './componenet/RegistrationForm/RegistrationForm';
 import LoginForm from './componenet/loginForm/LoginForm';
+import AfterLogin from './componenet/AfterLogin/AfterLogin';
 
 function App() {
+
   const initialRegnState = {
     fname: "",
     lname: "",
@@ -44,6 +47,8 @@ function App() {
 
   // state for login form data
   const [loginData, setLoginData] = useState(initialLoginState);
+  const [login, setLogin] = useState(true);
+
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     if (!validation.regexForEmail.test(loginData.email)) {
@@ -55,40 +60,47 @@ function App() {
     } else {
       setLoginData(initialLoginState)
       alert(`${loginData.email} login successfully`)
+      setLogin(true);
     }
   }
   return (
     <div className='container'>
-      <div className="form">
-        <div className="left">
-          <h2>Information</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Et molestie ac feugiat sed. Diam volutpat commodo.
-          </p>
-          <p>
-            <strong>Validation Rules: </strong>
-          </p>
-          <ol>
-            <li>Email must be in correct format</li>
-            <li>A password must:
-              <ol type="a">
-                <li>be within between 4, 16</li>
-                <li>contain uppercase and lowercase</li>
-                <li>contain digits</li>
-                <li>contain symbols</li>
+      {
+        login
+          ? <AfterLogin states={loginData} handleLogin={setLogin} />
+          : <div className="form">
+            <div className="left">
+              <h2>Information</h2>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Et molestie ac feugiat sed. Diam volutpat commodo.
+              </p>
+              <p>
+                <strong>Validation Rules: </strong>
+              </p>
+              <ol>
+                <li>Email must be in correct format</li>
+                <li>A password must:
+                  <ol type="a">
+                    <li>be within between 4, 16</li>
+                    <li>contain uppercase and lowercase</li>
+                    <li>contain digits</li>
+                    <li>contain symbols</li>
+                  </ol>
+                </li>
               </ol>
-            </li>
-          </ol>
-          {/* btn to toggle b/w registration form  and login form */}
-          <button onClick={() => setAlreadyAccount(!alreadyAccount)}>{!alreadyAccount ? "Have An Account" : "Create An Account"}</button>
-        </div>
-        <div className="right">
-          <h1>{!alreadyAccount ? "Registration Form" : "Login"}</h1>
-          {
-            !alreadyAccount ? <RegistrationForm states={regnData} setStates={setRegnData} handleSubmit={handleRegnSubmit} validation={validation} /> : <LoginForm states={loginData} setStates={setLoginData} handleSubmit={handleLoginSubmit} validation={validation} />
-          }
-        </div>
-      </div>
+              {/* btn to toggle b/w registration form  and login form */}
+              <button onClick={() => setAlreadyAccount(!alreadyAccount)}>{!alreadyAccount ? "Have An Account" : "Create An Account"}</button>
+            </div>
+            <div className="right">
+              <h1>{!alreadyAccount ? "Registration Form" : "Login"}</h1>
+              {
+                !alreadyAccount ? <RegistrationForm states={regnData} setStates={setRegnData} handleSubmit={handleRegnSubmit} validation={validation} /> : <LoginForm states={loginData} setStates={setLoginData} handleSubmit={handleLoginSubmit} validation={validation} />
+              }
+            </div>
+          </div>
+      }
+
+
     </div>
   )
 }
