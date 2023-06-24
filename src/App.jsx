@@ -110,9 +110,7 @@ function App() {
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Et molestie ac feugiat sed. Diam volutpat commodo.
               </p>
-              <p>
-                <strong>Validation Rules: </strong>
-              </p>
+              <strong>Validation Rules: </strong>
               <ol>
                 <li>Email must be in correct format</li>
                 <li>A password must:

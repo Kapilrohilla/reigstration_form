@@ -3,7 +3,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #75e2e9;
+    background-color: #e4e5e5;
     color: #fff;
     padding: 1rem;
 }
@@ -35,7 +35,7 @@
 
 .left p,
 .left li {
-    font-weight: 300;
+    font-weight: 500;
 }
 
 .left ol {
@@ -46,8 +46,9 @@
     margin-block: 1.5rem;
 }
 
-p strong {
+strong {
     font-weight: 700;
+    font-size: 1.3rem
 }
 
 .left button {
@@ -79,6 +80,7 @@ p strong {
     .form {
         grid-template-columns: 1fr;
         margin-block: 0;
+        border-radius: 0;
     }
 }
 
