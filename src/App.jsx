@@ -34,6 +34,8 @@ function App() {
       console.log("enter Email in correct format");
     } else {
       setRegnData(initialRegnState)
+      setAlreadyAccount(true);
+      alert(`${regnData.email} is registered successfully`);
     }
   }
   return (
