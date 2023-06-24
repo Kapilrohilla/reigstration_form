@@ -41,7 +41,10 @@ const AfterLogin = (props) => {
                     </div>
                 </section>
                 <section className="logoutBtn section">
-                    <button onClick={() => props.handleLogin(false)}>Logout</button>
+                    <button onClick={() => {
+                        props.handleLogin(false)
+                        localStorage.removeItem("login");
+                    }}>Logout</button>
                 </section>
             </div>
         </div >

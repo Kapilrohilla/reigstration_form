@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 // necessary files
 import './App.css'
-import validation from "./validation";
+import validation from "./js/validation";
 
 // componenet
 import RegistrationForm from './componenet/RegistrationForm/RegistrationForm';
@@ -10,7 +10,7 @@ import LoginForm from './componenet/loginForm/LoginForm';
 import AfterLogin from './componenet/AfterLogin/AfterLogin';
 
 function App() {
-
+  // inital state value for registration form data
   const initialRegnState = {
     fname: "",
     lname: "",
@@ -19,16 +19,23 @@ function App() {
     cnfrmPswd: "",
     consent: false
   }
+  // initial state value for login form data
   const initialLoginState = {
     email: "",
     pswd: ""
   }
+  // state for registration form data
+  const [regnData, setRegnData] = useState(initialRegnState);
+  // state for login form data
+  const [loginData, setLoginData] = useState(initialLoginState);
+  // state to move from loginPage to loggedIn page
+  const [login, setLogin] = useState(false);
+  // state to handle local storage
+  const [storedLoginDetail, setStoredLoginDetail] = useState([]);
   // state to switch from registration form to login form
   const [alreadyAccount, setAlreadyAccount] = useState(false);
 
-  // state for registration form data
-  const [regnData, setRegnData] = useState(initialRegnState);
-  // to handle registration form data
+  // function to handle registration form data
   const handleRegnSubmit = (e) => {
     e.preventDefault()
     if (!regnData.consent) {
@@ -39,16 +46,31 @@ function App() {
     } else if (!validation.regexForEmail.test(regnData.email)) {
       console.log("enter Email in correct format");
     } else {
-      setRegnData(initialRegnState)
-      setAlreadyAccount(true);
-      alert(`${regnData.email} is registered successfully`);
+      const isAreadyPresent = storedLoginDetail.filter(obj => {
+        return obj.email === regnData.email;
+      })
+      console.log(isAreadyPresent);
+      if (isAreadyPresent[0] === undefined) {
+        setStoredLoginDetail(storedLoginDetail.concat({
+          name: `${regnData.fname} ${regnData.lname}`,
+          email: regnData.email,
+          pswd: regnData.pswd
+        }))
+        localStorage.setItem("userDetail", JSON.stringify(storedLoginDetail.concat({
+          name: `${regnData.fname} ${regnData.lname}`,
+          email: regnData.email,
+          pswd: regnData.pswd
+        })))
+        alert(`${regnData.email} is registered successfully`);
+
+      } else {
+        alert(`${regnData.email} is already registered`)
+      }
     }
+    setRegnData(initialRegnState);
+    setAlreadyAccount(true);
   }
-
-  // state for login form data
-  const [loginData, setLoginData] = useState(initialLoginState);
-  const [login, setLogin] = useState(true);
-
+  // function to handle login form data
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     if (!validation.regexForEmail.test(loginData.email)) {
@@ -58,11 +80,31 @@ function App() {
       console.log("pswd isn't valid");
       return;
     } else {
-      setLoginData(initialLoginState)
-      alert(`${loginData.email} login successfully`)
-      setLogin(true);
+      const loginMatch = storedLoginDetail.filter(obj => {
+        return obj.email === loginData.email && obj.pswd === loginData.pswd
+      })[0]
+      if (loginMatch !== undefined) {
+        setLoginData(initialLoginState);
+        alert("login credential matched successfully");
+        setLogin(true);
+      } else {
+        alert("Please provide correct login credential");
+      }
     }
   }
+
+  useEffect(() => {
+    const previousLoginData = JSON.parse(localStorage.getItem("userDetail"));
+    if (previousLoginData !== null) {
+      setStoredLoginDetail(storedLoginDetail.concat(previousLoginData));
+    }
+    console.log("useEffect");
+    // const previousLoginData = JSON.parse(localStorage.getItem("login"));
+    // console.log(previousLoginData)
+    // if (previousLoginData !== null) {
+    //   setLogin(true);
+    // }
+  }, []);
   return (
     <div className='container'>
       {
@@ -104,5 +146,4 @@ function App() {
     </div>
   )
 }
-
-export default App
+export default App;
