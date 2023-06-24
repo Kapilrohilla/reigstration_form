@@ -28,9 +28,9 @@ function App() {
     if (!regnData.consent) {
       console.log("Agree T&C");
       return;
-    } else if (regnData.pswd !== regnData) {
+    } else if (regnData.pswd !== regnData.cnfrmPswd) {
       console.log("confirm password should be same as password");
-    } else if (validation.regexForEmail.test(states.email)) {
+    } else if (!validation.regexForEmail.test(regnData.email)) {
       console.log("enter Email in correct format");
     } else {
       setRegnData(initialRegnState)

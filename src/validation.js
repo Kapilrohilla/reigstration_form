@@ -1,6 +1,8 @@
 import passwordValidator from "password-validator";
 
-const regexForEmail = /\w*\d*@{1}\w+.{1}\w{2,5}/
+// regular expression for email validation
+const regexForEmail = /\w*\d*@{1}\w+\.{1}\w{2,5}/
+
 const pswdSchema = new passwordValidator();
 pswdSchema
     .is().min(4)
