@@ -8,9 +8,6 @@ import RegistrationForm from './componenet/RegistrationForm/RegistrationForm';
 import LoginForm from './componenet/loginForm/LoginForm';
 
 function App() {
-  // state to switch from registration form to login form
-  const [alreadyAccount, setAlreadyAccount] = useState(false);
-
   const initialRegnState = {
     fname: "",
     lname: "",
@@ -19,9 +16,15 @@ function App() {
     cnfrmPswd: "",
     consent: false
   }
+  const initialLoginState = {
+    email: "",
+    pswd: ""
+  }
+  // state to switch from registration form to login form
+  const [alreadyAccount, setAlreadyAccount] = useState(false);
+
   // state for registration form data
   const [regnData, setRegnData] = useState(initialRegnState);
-
   // to handle registration form data
   const handleRegnSubmit = (e) => {
     e.preventDefault()
@@ -36,6 +39,22 @@ function App() {
       setRegnData(initialRegnState)
       setAlreadyAccount(true);
       alert(`${regnData.email} is registered successfully`);
+    }
+  }
+
+  // state for login form data
+  const [loginData, setLoginData] = useState(initialLoginState);
+  const handleLoginSubmit = (e) => {
+    e.preventDefault();
+    if (!validation.regexForEmail.test(loginData.email)) {
+      console.log("enter Email in correct format");
+      return;
+    } else if (!validation.pswdSchema.validate(loginData.pswd)) {
+      console.log("pswd isn't valid");
+      return;
+    } else {
+      setLoginData(initialLoginState)
+      alert(`${loginData.email} login successfully`)
     }
   }
   return (
@@ -66,7 +85,7 @@ function App() {
         <div className="right">
           <h1>{!alreadyAccount ? "Registration Form" : "Login"}</h1>
           {
-            !alreadyAccount ? <RegistrationForm states={regnData} setStates={setRegnData} handleSubmit={handleRegnSubmit} validation={validation} /> : <LoginForm />
+            !alreadyAccount ? <RegistrationForm states={regnData} setStates={setRegnData} handleSubmit={handleRegnSubmit} validation={validation} /> : <LoginForm states={loginData} setStates={setLoginData} handleSubmit={handleLoginSubmit} validation={validation} />
           }
         </div>
       </div>
