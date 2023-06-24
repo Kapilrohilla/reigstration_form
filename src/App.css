@@ -11,7 +11,7 @@
 .form {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    width: 1000px;
+    max-width: 1000px;
     border-radius: 10px;
     overflow: hidden;
     margin-block: 50px;
@@ -70,8 +70,15 @@ p strong {
 }
 
 @media screen and (max-width: 1000px) {
+    .container {
+        display: block;
+        padding: 0;
+        background-color: white;
+    }
+
     .form {
         grid-template-columns: 1fr;
+        margin-block: 0;
     }
 }
 
