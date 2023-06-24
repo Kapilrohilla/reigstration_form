@@ -15,6 +15,7 @@ const LoginForm = ({ states, setStates, validation, handleSubmit }) => {
                         ...states,
                         email: e.target.value
                     })}
+                    required
                 />
             </div>
             <div className="input login">
@@ -28,6 +29,7 @@ const LoginForm = ({ states, setStates, validation, handleSubmit }) => {
                         ...states,
                         pswd: e.target.value
                     })}
+                    required
                 />
             </div>
             <button type="submit">Login</button>
