@@ -98,12 +98,6 @@ function App() {
     if (previousLoginData !== null) {
       setStoredLoginDetail(storedLoginDetail.concat(previousLoginData));
     }
-    console.log("useEffect");
-    // const previousLoginData = JSON.parse(localStorage.getItem("login"));
-    // console.log(previousLoginData)
-    // if (previousLoginData !== null) {
-    //   setLogin(true);
-    // }
   }, []);
   return (
     <div className='container'>
