@@ -6,4 +6,28 @@
 
 .aicenter {
     margin-block: 50px;
+    width: 100%;
+}
+
+.input {
+    width: 100%;
+}
+
+.pswdInput img {
+    height: 30px;
+    object-fit: contain;
+}
+
+.pswdInput {
+    position: relative;
+}
+
+.pswdInput input {
+    padding-right: 50px;
+}
+
+.pswdInput img {
+    position: absolute;
+    top: 5px;
+    right: 10px;
 }

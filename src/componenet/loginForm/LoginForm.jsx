@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './LoginForm.css'
 const LoginForm = ({ states, setStates, validation, handleSubmit }) => {
+    const [showPswd, setShowPswd] = useState(false);
     return (
         <form className="aicenter" onSubmit={(e) => handleSubmit(e)}>
             <div className="input login">
@@ -19,18 +20,23 @@ const LoginForm = ({ states, setStates, validation, handleSubmit }) => {
                 />
             </div>
             <div className="input login">
-                <label htmlFor="pswd">Password</label>
-                <input
-                    type="password"
-                    id="password"
-                    value={states.pswd}
-                    className={!validation.pswdSchema.validate(states.pswd) && (states.pswd !== "") ? "error" : ""}
-                    onChange={(e) => setStates({
-                        ...states,
-                        pswd: e.target.value
-                    })}
-                    required
-                />
+                <label htmlFor="pswd">Password:</label>
+                <div className="pswdInput">
+                    <input
+                        type={showPswd ? "text" : "password"}
+                        id="password"
+                        value={states.pswd}
+                        className={!validation.pswdSchema.validate(states.pswd) && (states.pswd !== "") ? "error" : ""}
+                        onChange={(e) => setStates({
+                            ...states,
+                            pswd: e.target.value
+                        })}
+                        required
+                    />
+                    <img src={showPswd ? "eyeclosed.svg" : "eyeopen.svg"} alt="" onClick={() => {
+                        setShowPswd(!showPswd)
+                    }} />
+                </div>
             </div>
             <button type="submit">Login</button>
         </form>
