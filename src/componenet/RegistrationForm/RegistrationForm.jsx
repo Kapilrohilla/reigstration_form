@@ -13,6 +13,7 @@ const RegistrationForm = ({ states, setStates, handleSubmit, validation }) => {
                     type="text"
                     id="fname"
                     name="fname"
+                    placeholder='eg: kapil'
                     value={states.fname}
                     onChange={e => setStates({
                         ...states,
@@ -26,6 +27,7 @@ const RegistrationForm = ({ states, setStates, handleSubmit, validation }) => {
                     type="text"
                     id="lname"
                     name="lname"
+                    placeholder='eg: rohilla'
                     value={states.lname}
                     onChange={e => {
                         setStates({
@@ -42,6 +44,7 @@ const RegistrationForm = ({ states, setStates, handleSubmit, validation }) => {
                     type="email"
                     id="email"
                     name="email"
+                    placeholder='eg: xyz@example.com'
                     value={states.email}
                     className={!validation.regexForEmail.test(states.email) && (states.email !== "") ? "error" : ""}
                     onChange={e => {
@@ -59,6 +62,7 @@ const RegistrationForm = ({ states, setStates, handleSubmit, validation }) => {
                     type="password"
                     id="pswd"
                     name="pswd"
+                    placeholder='eg: Aa!1'
                     value={states.pswd}
                     className={!validation.pswdSchema.validate(states.pswd) && (states.pswd !== "") ? "error" : ""}
                     onChange={e => {
@@ -76,6 +80,7 @@ const RegistrationForm = ({ states, setStates, handleSubmit, validation }) => {
                     type="password"
                     id="cnfrmpswd"
                     name="confirmPswd"
+
                     className={(states.pswd !== states.cnfrmPswd) && (states.cnfrmPswd !== "") ? "error" : ""}
                     value={states.cnfrmPswd}
                     onChange={e => {

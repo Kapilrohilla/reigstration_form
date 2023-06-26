@@ -11,6 +11,7 @@ const LoginForm = ({ states, setStates, validation, handleSubmit }) => {
                     name="email"
                     id="email"
                     value={states.email}
+                    placeholder='eg: xyz@exapmle.com'
                     className={!validation.regexForEmail.test(states.email) && (states.email !== "") ? "error" : ""}
                     onChange={(e) => setStates({
                         ...states,
@@ -26,6 +27,7 @@ const LoginForm = ({ states, setStates, validation, handleSubmit }) => {
                         type={showPswd ? "text" : "password"}
                         id="password"
                         value={states.pswd}
+                        placeholder='eg: Aa!1'
                         className={!validation.pswdSchema.validate(states.pswd) && (states.pswd !== "") ? "error" : ""}
                         onChange={(e) => setStates({
                             ...states,
